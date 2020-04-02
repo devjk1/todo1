@@ -1953,6 +1953,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37387,15 +37398,43 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
     _vm._l(_vm.todoData, function(todo) {
-      return _c("div", { key: todo.id, staticClass: "row" }, [
-        _c("div", { staticClass: "col" }, [_vm._v(_vm._s(todo.description))]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col" }, [_vm._v(_vm._s(todo.due_at))]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col" }, [_vm._v(_vm._s(todo.completed))])
-      ])
+      return _c(
+        "div",
+        {
+          key: todo.id,
+          staticClass: "row d-flex align-items-center border-bottom"
+        },
+        [
+          _c("div", { staticClass: "col-sm-6" }, [
+            _vm._v(_vm._s(todo.description))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-2" }, [_vm._v(_vm._s(todo.due_at))]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-2" }, [
+            _vm._v(_vm._s(todo.completed))
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "col-sm-1 btn btn-outline-primary",
+              attrs: { type: "button" }
+            },
+            [_vm._v("\n            Edit\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "col-sm-1 btn btn-outline-danger",
+              attrs: { type: "button" }
+            },
+            [_vm._v("\n            Delete\n        ")]
+          )
+        ]
+      )
     }),
     0
   )

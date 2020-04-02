@@ -22,3 +22,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/user/{user}/todos', 'TodoController@index')->name('todo.index');
+Route::get('/user/{user}/todos/create', 'TodoController@create')->name('todo.create');

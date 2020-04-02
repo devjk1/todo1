@@ -39,11 +39,11 @@ class User extends Authenticatable
 
     public function todos()
     {
-        $this->hasMany('App\Todo');
+        return $this->hasMany('App\Todo');
     }
 
     public function todoLists()
     {
-        $this->hasMany('App\TodoList');
+        return $this->hasMany('App\TodoList');
     }
 }

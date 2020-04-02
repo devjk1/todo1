@@ -8,11 +8,11 @@ class TodoList extends Model
 {
     public function todos()
     {
-        $this->hasMany('App\Todo');
+        return $this->hasMany('App\Todo');
     }
 
     public function user()
     {
-        $this->belongsTo('App\User');
+        return $this->belongsTo('App\User');
     }
 }
