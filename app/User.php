@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         $this->hasMany('App\Todo');
     }
+
+    public function todoLists()
+    {
+        $this->hasMany('App\TodoList');
+    }
 }
