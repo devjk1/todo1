@@ -3,18 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\TodoList;
+use App\User;
 use Illuminate\Http\Request;
 
 class TodoListController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        //
+        $todoLists = $user->todoLists;
+
+        return view('todolist.index', compact('todoLists'));
     }
 
     /**

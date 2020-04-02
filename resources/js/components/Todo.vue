@@ -1,23 +1,18 @@
 <template>
-    <div>
-        <div    class="row d-flex align-items-center border-bottom"
-                v-for="todo in todoData"
-                :key="todo.id"
+    <div class="row d-flex align-items-center border-top">
+        <div class="col-sm-6">{{ item.description }}</div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2"></div>
+        <a  href=""
+            class="col-sm-1 btn btn-primary"
         >
-            <div class="col-sm-6">{{ todo.description }}</div>
-            <div class="col-sm-2">{{ todo.due_at }}</div>
-            <div class="col-sm-2">{{ todo.completed }}</div>
-            <button type="button"
-                    class="col-sm-1 btn btn-outline-primary"
-            >
-                Edit
-            </button>
-            <button type="button"
-                    class="col-sm-1 btn btn-outline-danger"
-            >
-                Delete
-            </button>
-        </div>
+            Edit
+        </a>
+        <a  href=""
+            class="col-sm-1 btn btn-danger"
+        >
+            Delete
+        </a>
     </div>
 </template>
 
@@ -25,13 +20,13 @@
 export default {
     data() {
         return {
-            todos: null,
+
         }
     },
     props: {
-        todoData: {
-            type: Array,
-        },
+        item: {
+            type: Object,
+        }
     },
 }
 </script>

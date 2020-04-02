@@ -4,20 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Todo;
 use App\User;
+use App\TodoList;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user)
+    public function index(User $user, TodoList $todoList)
     {
-        $todos = $user->todos;
+        $todos = Todo::where('user_id', $user->id)
+            ->where('todo_list_id', $todoList->id)
+            ->get();
 
-        return view('todo.index', compact('todos'));
+        return $todos;
     }
 
     /**
@@ -27,7 +35,7 @@ class TodoController extends Controller
      */
     public function create(User $user)
     {
-        return view('todo.create');
+
     }
 
     /**
