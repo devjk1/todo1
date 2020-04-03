@@ -7,11 +7,11 @@
             >
                 Add Todo
             </a>
-            <a  href="#"
-                class="col-sm-2 btn btn-danger"
+            <button class="col-sm-2 btn btn-danger"
+                    @click="deleteTodoList"
             >
                 Delete TodoList
-            </a>
+            </button>
         </div>
         <todo
             v-for="item in items"
@@ -34,14 +34,22 @@ export default {
         }
     },
     props: {
+        user: {
+            type: Object,
+        },
         list: {
             type: Object,
         }
     },
+    methods: {
+        deleteTodoList() {
+            axios.delete(`/users/${this.user.id}/todolists/${this.list.id}/delete`)
+                .catch(console.log("delete error"));
+        },
+    },
     created() {
-        axios.get(`/users/${this.list.user_id}/todolists/${this.list.id}/todos`)
-            .then(response => this.items = response.data)
-            .catch(console.log('error'));
+        axios.get(`/users/${this.user.id}/todolists/${this.list.id}/todos`)
+            .then(response => this.items = response.data);
     },
 }
 </script>

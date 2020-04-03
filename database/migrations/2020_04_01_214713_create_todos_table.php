@@ -18,8 +18,8 @@ class CreateTodosTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('todo_list_id');
             $table->string('description');
-            $table->timestamp('due_at');
-            $table->boolean('completed');
+            $table->string('due_at')->nullable();
+            $table->boolean('completed')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')

@@ -1968,6 +1968,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2034,16 +2035,24 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   props: {
+    user: {
+      type: Object
+    },
     list: {
       type: Object
+    }
+  },
+  methods: {
+    deleteTodoList: function deleteTodoList() {
+      axios["delete"]("/users/".concat(this.user.id, "/todolists/").concat(this.list.id, "/delete"))["catch"](console.log("delete error"));
     }
   },
   created: function created() {
     var _this = this;
 
-    axios.get("/users/".concat(this.list.user_id, "/todolists/").concat(this.list.id, "/todos")).then(function (response) {
+    axios.get("/users/".concat(this.user.id, "/todolists/").concat(this.list.id, "/todos")).then(function (response) {
       return _this.items = response.data;
-    })["catch"](console.log('error'));
+    });
   }
 });
 
@@ -37481,7 +37490,10 @@ var render = function() {
       "div",
       { staticClass: "row" },
       _vm._l(_vm.lists, function(list) {
-        return _c("todo-list", { key: list.id, attrs: { list: list } })
+        return _c("todo-list", {
+          key: list.id,
+          attrs: { list: list, user: _vm.user }
+        })
       }),
       1
     )
@@ -37528,8 +37540,11 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "a",
-            { staticClass: "col-sm-2 btn btn-danger", attrs: { href: "#" } },
+            "button",
+            {
+              staticClass: "col-sm-2 btn btn-danger",
+              on: { click: _vm.deleteTodoList }
+            },
             [_vm._v("\n            Delete TodoList\n        ")]
           )
         ]

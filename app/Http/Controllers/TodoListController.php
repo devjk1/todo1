@@ -96,8 +96,11 @@ class TodoListController extends Controller
      * @param  \App\TodoList  $todoList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TodoList $todoList)
+    public function destroy(User $user, TodoList $todoList)
     {
-        //
+        //$user = Auth::user();
+        TodoList::where('user_id', $user->id)
+            ->where('id', $todoList->id)
+            ->delete();
     }
 }

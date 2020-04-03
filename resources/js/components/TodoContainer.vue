@@ -12,6 +12,7 @@
                 v-for="list in lists"
                 :key=list.id
                 :list="list"
+                :user="user"
             ></todo-list>
         </div>
     </div>
