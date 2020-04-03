@@ -1974,9 +1974,14 @@ __webpack_require__.r(__webpack_exports__);
     TodoList: _TodoList__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
-    return {};
+    return {
+      createTodoListUrl: "/users/".concat(this.user.id, "/todolists/create")
+    };
   },
   props: {
+    user: {
+      type: Object
+    },
     lists: {
       type: Array
     }
@@ -1995,6 +2000,11 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Todo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Todo */ "./resources/js/components/Todo.vue");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -37456,7 +37466,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container border" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "a",
+        {
+          staticClass: "col-sm-2 btn btn-success",
+          attrs: { href: _vm.createTodoListUrl }
+        },
+        [_vm._v("\n            Create TodoList\n        ")]
+      )
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -37468,20 +37487,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c(
-        "a",
-        { staticClass: "col-sm-2 btn btn-success", attrs: { href: "#" } },
-        [_vm._v("\n            Create TodoList\n        ")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -37511,9 +37517,15 @@ var render = function() {
         "div",
         { staticClass: "row d-flex align-items-center border-bottom" },
         [
-          _c("div", { staticClass: "col-sm-10" }, [
+          _c("div", { staticClass: "col-sm-8" }, [
             _vm._v(_vm._s(_vm.list.title))
           ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            { staticClass: "col-sm-2 btn btn-success", attrs: { href: "#" } },
+            [_vm._v("\n            Add Todo\n        ")]
+          ),
           _vm._v(" "),
           _c(
             "a",

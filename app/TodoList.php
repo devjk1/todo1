@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class TodoList extends Model
 {
+    protected $fillable = [
+        'title',
+    ];
+
     public function todos()
     {
         return $this->hasMany('App\Todo');

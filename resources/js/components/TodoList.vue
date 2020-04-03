@@ -1,7 +1,12 @@
 <template>
     <div class="container border">
         <div class="row d-flex align-items-center border-bottom">
-            <div class="col-sm-10">{{ list.title }}</div>
+            <div class="col-sm-8">{{ list.title }}</div>
+            <a  href="#"
+                class="col-sm-2 btn btn-success"
+            >
+                Add Todo
+            </a>
             <a  href="#"
                 class="col-sm-2 btn btn-danger"
             >

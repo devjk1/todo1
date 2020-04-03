@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\TodoList;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class TodoListController extends Controller
 {
@@ -32,7 +34,7 @@ class TodoListController extends Controller
      */
     public function create()
     {
-        //
+        return view('todolist.create');
     }
 
     /**
@@ -41,9 +43,17 @@ class TodoListController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+        ])->validate();
+
+        $newTodoList = new TodoList;
+        $newTodoList->user_id = $user->id;
+        $newTodoList->fill($request->all())->save();
+
+        return redirect()->action('TodoListController@index', compact('user'));
     }
 
     /**

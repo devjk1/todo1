@@ -1,7 +1,7 @@
 <template>
     <div class="container border">
         <div class="row">
-            <a  href="#"
+            <a  :href="createTodoListUrl"
                 class="col-sm-2 btn btn-success"
             >
                 Create TodoList
@@ -26,13 +26,16 @@ export default {
     },
     data() {
         return {
-
+            createTodoListUrl: `/users/${this.user.id}/todolists/create`,
         }
     },
     props: {
+        user: {
+            type: Object,
+        },
         lists: {
             type: Array,
-        }
+        },
     },
 }
 </script>
