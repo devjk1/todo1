@@ -6,6 +6,7 @@ use App\Todo;
 use App\User;
 use App\TodoList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TodoController extends Controller
 {
@@ -33,9 +34,9 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(User $user)
+    public function create(User $user, TodoList $todoList)
     {
-
+        return view('todo.create', compact('user', 'todoList'));
     }
 
     /**
@@ -44,9 +45,25 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user, TodoList $todoList)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'description' => 'required',
+            'due_at' => 'required',
+        ])->validate();
+
+        /* $newTodo = new Todo;
+        $newTodo->user_id = $user->id;
+        $newTodo->todo_list_id = $todoList->id;
+        $newTodo->fill($request->all())->save(); */
+        $newTodo = new Todo;
+        $newTodo->user_id = $user->id;
+        $newTodo->todo_list_id = $todoList->id;
+        $newTodo->description = $request->description;
+        $newTodo->due_at = $request->due_at;
+        $newTodo->save();
+
+        return redirect()->action('TodoListController@index', compact('user'));
     }
 
     /**

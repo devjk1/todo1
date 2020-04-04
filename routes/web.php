@@ -27,3 +27,5 @@ Route::post('/users/{user}/todolists/store', 'TodoListController@store')->name('
 Route::delete('/users/{user}/todolists/{todoList}/delete', 'TodoListController@destroy')->name('todolist.destroy');
 
 Route::get('/users/{user}/todolists/{todoList}/todos', 'TodoController@index')->name('todo.index');
+Route::get('/users/{user}/todolists/{todoList}/todos/create', 'TodoController@create')->name('todo.create');
+Route::post('/users/{user}/todolists/{todoList}/todos/store', 'TodoController@store')->name('todo.store');

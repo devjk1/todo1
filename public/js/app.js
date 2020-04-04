@@ -2031,7 +2031,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      items: null
+      items: null,
+      createTodoUrl: "/users/".concat(this.user.id, "/todolists/").concat(this.list.id, "/todos/create")
     };
   },
   props: {
@@ -37535,7 +37536,10 @@ var render = function() {
           _vm._v(" "),
           _c(
             "a",
-            { staticClass: "col-sm-2 btn btn-success", attrs: { href: "#" } },
+            {
+              staticClass: "col-sm-2 btn btn-success",
+              attrs: { href: _vm.createTodoUrl }
+            },
             [_vm._v("\n            Add Todo\n        ")]
           ),
           _vm._v(" "),

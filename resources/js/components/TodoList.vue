@@ -2,7 +2,7 @@
     <div class="container border">
         <div class="row d-flex align-items-center border-bottom">
             <div class="col-sm-8">{{ list.title }}</div>
-            <a  href="#"
+            <a  :href="createTodoUrl"
                 class="col-sm-2 btn btn-success"
             >
                 Add Todo
@@ -31,6 +31,7 @@ export default {
     data() {
         return {
             items: null,
+            createTodoUrl: `/users/${this.user.id}/todolists/${this.list.id}/todos/create`,
         }
     },
     props: {
