@@ -1951,7 +1951,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     deleteTodo: function deleteTodo() {
-      axios["delete"]("/users/".concat(this.item.user_id, "/todolists/").concat(this.item.todo_list_id, "/todos/").concat(this.item.id, "/delete"))["catch"](console.log("delete todo error"));
+      axios["delete"]("/users/".concat(this.item.user_id, "/todolists/").concat(this.item.todo_list_id, "/todos/").concat(this.item.id, "/delete"))["catch"](console.log("delete todo error")).then(this.$emit('delete-todo'));
     }
   }
 });
@@ -2060,6 +2060,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2084,6 +2085,9 @@ __webpack_require__.r(__webpack_exports__);
       axios["delete"]("/users/".concat(this.user.id, "/todolists/").concat(this.list.id, "/delete"))["catch"](function (error) {
         return console.log(error);
       }).then(this.$emit('delete-todo-list'));
+    },
+    deleteTodo: function deleteTodo(index) {
+      this.items.splice(index, 1);
     }
   },
   created: function created() {
@@ -37627,8 +37631,16 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm._l(_vm.items, function(item) {
-        return _c("todo", { key: item.id, attrs: { item: item } })
+      _vm._l(_vm.items, function(item, index) {
+        return _c("todo", {
+          key: index,
+          attrs: { item: item },
+          on: {
+            "delete-todo": function($event) {
+              return _vm.deleteTodo(index)
+            }
+          }
+        })
       })
     ],
     2

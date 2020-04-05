@@ -43,7 +43,8 @@ export default {
         },
         deleteTodo() {
             axios.delete(`/users/${this.item.user_id}/todolists/${this.item.todo_list_id}/todos/${this.item.id}/delete`)
-                .catch(console.log("delete todo error"));
+                .catch(console.log("delete todo error"))
+                .then(this.$emit('delete-todo'));
         },
     },
 }

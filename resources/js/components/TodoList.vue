@@ -20,9 +20,10 @@
             </button>
         </div>
         <todo
-            v-for="item in items"
-            :key="item.id"
+            v-for="(item, index) in items"
+            :key="index"
             :item="item"
+            @delete-todo="deleteTodo(index)"
         ></todo>
     </div>
 </template>
@@ -53,6 +54,9 @@ export default {
             axios.delete(`/users/${this.user.id}/todolists/${this.list.id}/delete`)
                 .catch(error => console.log(error))
                 .then(this.$emit('delete-todo-list'));
+        },
+        deleteTodo(index) {
+            this.items.splice(index, 1);
         },
     },
     created() {
