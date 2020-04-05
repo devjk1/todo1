@@ -22,9 +22,12 @@ class TodoListController extends Controller
      */
     public function index(User $user)
     {
-        $todoLists = $user->todoLists;
+        if (request()->wantsJson()) {
+            $todoLists = $user->todoLists;
+            return $todoLists;
+        }
 
-        return view('todolist.index', compact('todoLists'));
+        return view('todolist.index');
     }
 
     /**

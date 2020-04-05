@@ -51,7 +51,8 @@ export default {
     methods: {
         deleteTodoList() {
             axios.delete(`/users/${this.user.id}/todolists/${this.list.id}/delete`)
-                .catch(console.log("delete todoList error"));
+                .catch(error => console.log(error))
+                .then(this.$emit('delete-todo-list'));
         },
     },
     created() {

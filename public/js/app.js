@@ -1988,6 +1988,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1995,16 +1996,26 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      lists: null,
       createTodoListUrl: "/users/".concat(this.user.id, "/todolists/create")
     };
   },
   props: {
     user: {
       type: Object
-    },
-    lists: {
-      type: Array
     }
+  },
+  methods: {
+    deleteTodoList: function deleteTodoList(index) {
+      this.lists.splice(index, 1);
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get("/users/".concat(this.user.id, "/todolists")).then(function (response) {
+      return _this.lists = response.data;
+    });
   }
 });
 
@@ -2070,7 +2081,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     deleteTodoList: function deleteTodoList() {
-      axios["delete"]("/users/".concat(this.user.id, "/todolists/").concat(this.list.id, "/delete"))["catch"](console.log("delete todoList error"));
+      axios["delete"]("/users/".concat(this.user.id, "/todolists/").concat(this.list.id, "/delete"))["catch"](function (error) {
+        return console.log(error);
+      }).then(this.$emit('delete-todo-list'));
     }
   },
   created: function created() {
@@ -37534,10 +37547,15 @@ var render = function() {
     _c(
       "div",
       { staticClass: "row" },
-      _vm._l(_vm.lists, function(list) {
+      _vm._l(_vm.lists, function(list, index) {
         return _c("todo-list", {
-          key: list.id,
-          attrs: { list: list, user: _vm.user }
+          key: index,
+          attrs: { list: list, user: _vm.user },
+          on: {
+            "delete-todo-list": function($event) {
+              return _vm.deleteTodoList(index)
+            }
+          }
         })
       }),
       1
