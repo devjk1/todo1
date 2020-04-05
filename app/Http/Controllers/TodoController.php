@@ -100,7 +100,7 @@ class TodoController extends Controller
         $editedTodo = Todo::find($todo->id);
 
         if ($request->has('data.completed')) {
-            $editedTodo->completed = 1;
+            $editedTodo->completed = $request->input('data.completed');
             $editedTodo->save();
         } else {
             $validator = Validator::make($request->all(), [
