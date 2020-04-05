@@ -24,6 +24,7 @@
             :key="index"
             :item="item"
             @delete-todo="deleteTodo(index)"
+            @complete-todo="completeTodo(index)"
         ></todo>
     </div>
 </template>
@@ -57,6 +58,9 @@ export default {
         },
         deleteTodo(index) {
             this.items.splice(index, 1);
+        },
+        completeTodo(index) {
+            this.items[index].completed = 1;
         },
     },
     created() {

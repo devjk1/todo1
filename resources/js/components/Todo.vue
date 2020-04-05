@@ -39,7 +39,7 @@ export default {
                 data: {
                     completed: 1,
                 }
-            });
+            }).then(this.$emit('complete-todo'));
         },
         deleteTodo() {
             axios.delete(`/users/${this.item.user_id}/todolists/${this.item.todo_list_id}/todos/${this.item.id}/delete`)
