@@ -97,17 +97,23 @@ class TodoController extends Controller
      */
     public function update(Request $request, User $user, TodoList $todoList, Todo $todo)
     {
-        $validator = Validator::make($request->all(), [
-            'description' => 'required',
-            'due_at' => 'required',
-        ])->validate();
-
         $editedTodo = Todo::find($todo->id);
-        $editedTodo->description = $request->description;
-        $editedTodo->due_at = $request->due_at;
-        $editedTodo->save();
 
-        return redirect()->action('TodoListController@index', compact('user'));
+        if ($request->input('completed', 1)) {
+            $editedTodo->completed = 1;
+            $editedTodo->save();
+        } else {
+            $validator = Validator::make($request->all(), [
+                'description' => 'required',
+                'due_at' => 'required',
+            ])->validate();
+
+            $editedTodo->description = $request->description;
+            $editedTodo->due_at = $request->due_at;
+            $editedTodo->save();
+
+            return redirect()->action('TodoListController@index', compact('user'));
+        }
     }
 
     /**

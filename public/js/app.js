@@ -1927,6 +1927,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1939,6 +1943,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    completeTodo: function completeTodo() {
+      axios.put("/users/".concat(this.item.user_id, "/todolists/").concat(this.item.todo_list_id, "/todos/").concat(this.item.id, "/update"), {
+        params: {
+          completed: 1
+        }
+      });
+    },
     deleteTodo: function deleteTodo() {
       axios["delete"]("/users/".concat(this.item.user_id, "/todolists/").concat(this.item.todo_list_id, "/todos/").concat(this.item.id, "/delete"))["catch"](console.log("delete todo error"));
     }
@@ -37457,9 +37468,14 @@ var render = function() {
         _vm._v(_vm._s(_vm.item.completed))
       ]),
       _vm._v(" "),
-      _c("button", { staticClass: "col-sm-2 btn btn-outline-success" }, [
-        _vm._v("Complete Todo")
-      ]),
+      _c(
+        "button",
+        {
+          staticClass: "col-sm-2 btn btn-outline-success",
+          on: { click: _vm.completeTodo }
+        },
+        [_vm._v("\n        Complete Todo\n    ")]
+      ),
       _vm._v(" "),
       _c(
         "a",
