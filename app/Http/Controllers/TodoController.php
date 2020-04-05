@@ -83,9 +83,9 @@ class TodoController extends Controller
      * @param  \App\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Todo $todo)
+    public function edit(User $user, TodoList $todoList, Todo $todo)
     {
-        //
+        return view('todo.edit', compact('todo'));
     }
 
     /**
@@ -95,9 +95,19 @@ class TodoController extends Controller
      * @param  \App\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Todo $todo)
+    public function update(Request $request, User $user, TodoList $todoList, Todo $todo)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'description' => 'required',
+            'due_at' => 'required',
+        ])->validate();
+
+        $editedTodo = Todo::find($todo->id);
+        $editedTodo->description = $request->description;
+        $editedTodo->due_at = $request->due_at;
+        $editedTodo->save();
+
+        return redirect()->action('TodoListController@index', compact('user'));
     }
 
     /**

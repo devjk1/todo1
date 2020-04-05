@@ -1926,9 +1926,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      editTodoUrl: "/users/".concat(this.item.user_id, "/todolists/").concat(this.item.todo_list_id, "/todos/").concat(this.item.id, "/edit")
+    };
   },
   props: {
     item: {
@@ -37433,23 +37436,34 @@ var render = function() {
     "div",
     { staticClass: "row d-flex align-items-center border-top" },
     [
-      _c("div", { staticClass: "col-sm-6" }, [
+      _c("div", { staticClass: "col-sm-4" }, [
         _vm._v(_vm._s(_vm.item.description))
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-sm-2" }),
+      _c("div", { staticClass: "col-sm-2" }, [_vm._v(_vm._s(_vm.item.due_at))]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-sm-2" }),
+      _c("div", { staticClass: "col-sm-2" }, [
+        _vm._v(_vm._s(_vm.item.completed))
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "col-sm-2 btn btn-outline-success" }, [
+        _vm._v("Complete Todo")
+      ]),
       _vm._v(" "),
       _c(
         "a",
-        { staticClass: "col-sm-1 btn btn-primary", attrs: { href: "" } },
+        {
+          staticClass: "col-sm-1 btn btn-outline-primary",
+          attrs: { href: _vm.editTodoUrl }
+        },
         [_vm._v("\n        Edit\n    ")]
       ),
       _vm._v(" "),
-      _c("a", { staticClass: "col-sm-1 btn btn-danger", attrs: { href: "" } }, [
-        _vm._v("\n        Delete\n    ")
-      ])
+      _c(
+        "a",
+        { staticClass: "col-sm-1 btn btn-outline-danger", attrs: { href: "" } },
+        [_vm._v("\n        Delete\n    ")]
+      )
     ]
   )
 }
