@@ -116,8 +116,8 @@ class TodoController extends Controller
      * @param  \App\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Todo $todo)
+    public function destroy(User $user, TodoList $todoList, Todo $todo)
     {
-        //
+        Todo::where('id', $todo->id)->delete();
     }
 }

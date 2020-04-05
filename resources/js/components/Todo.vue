@@ -9,11 +9,11 @@
         >
             Edit
         </a>
-        <a  href=""
-            class="col-sm-1 btn btn-outline-danger"
+        <button class="col-sm-1 btn btn-outline-danger"
+                @click="deleteTodo"
         >
             Delete
-        </a>
+        </button>
     </div>
 </template>
 
@@ -28,6 +28,12 @@ export default {
         item: {
             type: Object,
         }
+    },
+    methods: {
+        deleteTodo() {
+            axios.delete(`/users/${this.item.user_id}/todolists/${this.item.todo_list_id}/todos/${this.item.id}/delete`)
+                .catch(console.log("delete todo error"));
+        },
     },
 }
 </script>

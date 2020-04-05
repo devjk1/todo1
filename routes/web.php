@@ -31,3 +31,4 @@ Route::get('/users/{user}/todolists/{todoList}/todos/create', 'TodoController@cr
 Route::post('/users/{user}/todolists/{todoList}/todos/store', 'TodoController@store')->name('todo.store');
 Route::get('/users/{user}/todolists/{todoList}/todos/{todo}/edit', 'TodoController@edit')->name('todo.edit');
 Route::put('/users/{user}/todolists/{todoList}/todos/{todo}/update', 'TodoController@update')->name('todo.update');
+Route::delete('/users/{user}/todolists/{todoList}/todos/{todo}/delete', 'TodoController@destroy')->name('todo.destroy');

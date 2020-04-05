@@ -1937,6 +1937,11 @@ __webpack_require__.r(__webpack_exports__);
     item: {
       type: Object
     }
+  },
+  methods: {
+    deleteTodo: function deleteTodo() {
+      axios["delete"]("/users/".concat(this.item.user_id, "/todolists/").concat(this.item.todo_list_id, "/todos/").concat(this.item.id, "/delete"))["catch"](console.log("delete todo error"));
+    }
   }
 });
 
@@ -2048,7 +2053,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     deleteTodoList: function deleteTodoList() {
-      axios["delete"]("/users/".concat(this.user.id, "/todolists/").concat(this.list.id, "/delete"))["catch"](console.log("delete error"));
+      axios["delete"]("/users/".concat(this.user.id, "/todolists/").concat(this.list.id, "/delete"))["catch"](console.log("delete todoList error"));
     }
   },
   created: function created() {
@@ -37460,8 +37465,11 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "a",
-        { staticClass: "col-sm-1 btn btn-outline-danger", attrs: { href: "" } },
+        "button",
+        {
+          staticClass: "col-sm-1 btn btn-outline-danger",
+          on: { click: _vm.deleteTodo }
+        },
         [_vm._v("\n        Delete\n    ")]
       )
     ]
