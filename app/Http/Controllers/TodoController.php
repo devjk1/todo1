@@ -99,7 +99,7 @@ class TodoController extends Controller
     {
         $editedTodo = Todo::find($todo->id);
 
-        if ($request->input('completed', 1)) {
+        if ($request->has('data.completed')) {
             $editedTodo->completed = 1;
             $editedTodo->save();
         } else {

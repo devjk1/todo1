@@ -36,7 +36,7 @@ export default {
     methods: {
         completeTodo() {
             axios.put(`/users/${this.item.user_id}/todolists/${this.item.todo_list_id}/todos/${this.item.id}/update`, {
-                params: {
+                data: {
                     completed: 1,
                 }
             });

@@ -1945,7 +1945,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     completeTodo: function completeTodo() {
       axios.put("/users/".concat(this.item.user_id, "/todolists/").concat(this.item.todo_list_id, "/todos/").concat(this.item.id, "/update"), {
-        params: {
+        data: {
           completed: 1
         }
       });
