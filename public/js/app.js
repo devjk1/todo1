@@ -2032,6 +2032,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -37550,10 +37556,21 @@ var render = function() {
     [
       _c(
         "div",
-        { staticClass: "row d-flex align-items-center border-bottom" },
+        {
+          staticClass:
+            "row d-flex align-items-center border-bottom bg-secondary"
+        },
         [
-          _c("div", { staticClass: "col-sm-8" }, [
+          _c("div", { staticClass: "col-sm-4" }, [
             _vm._v(_vm._s(_vm.list.title))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-2" }, [
+            _vm._v("\n            Due Date\n        ")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-2" }, [
+            _vm._v("\n            Completed\n        ")
           ]),
           _vm._v(" "),
           _c(

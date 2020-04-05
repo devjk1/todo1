@@ -1,7 +1,13 @@
 <template>
     <div class="container border">
-        <div class="row d-flex align-items-center border-bottom">
-            <div class="col-sm-8">{{ list.title }}</div>
+        <div class="row d-flex align-items-center border-bottom bg-secondary">
+            <div class="col-sm-4">{{ list.title }}</div>
+            <div class="col-sm-2">
+                Due Date
+            </div>
+            <div class="col-sm-2">
+                Completed
+            </div>
             <a  :href="createTodoUrl"
                 class="col-sm-2 btn btn-success"
             >
