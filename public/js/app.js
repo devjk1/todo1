@@ -2062,6 +2062,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2092,6 +2097,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     completeTodo: function completeTodo(index) {
       this.items[index].completed = 1;
+    },
+    exportTodoList: function exportTodoList() {
+      axios.get("/users/".concat(this.user.id, "/todolists/").concat(this.list.id, "/todos/export"));
     }
   },
   created: function created() {
@@ -37616,9 +37624,18 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c(
+            "button",
+            {
+              staticClass: "col-sm-1 btn btn-primary",
+              on: { click: _vm.exportTodoList }
+            },
+            [_vm._v("\n            Export\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
             "a",
             {
-              staticClass: "col-sm-2 btn btn-success",
+              staticClass: "col-sm-1 btn btn-success",
               attrs: { href: _vm.createTodoUrl }
             },
             [_vm._v("\n            Add Todo\n        ")]

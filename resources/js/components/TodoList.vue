@@ -8,8 +8,13 @@
             <div class="col-sm-2">
                 Completed
             </div>
+            <button class="col-sm-1 btn btn-primary"
+                    @click="exportTodoList"
+            >
+                Export
+            </button>
             <a  :href="createTodoUrl"
-                class="col-sm-2 btn btn-success"
+                class="col-sm-1 btn btn-success"
             >
                 Add Todo
             </a>
@@ -61,6 +66,9 @@ export default {
         },
         completeTodo(index) {
             this.items[index].completed = 1;
+        },
+        exportTodoList() {
+            axios.get(`/users/${this.user.id}/todolists/${this.list.id}/todos/export`);
         },
     },
     created() {
